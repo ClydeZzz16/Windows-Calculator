@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\61122 - Copy.png" />
+    <None Remove="Image\calculator-icon_34473 %281%29.ico" />
+    <None Remove="Image\OIP - Copy.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\61122 - Copy.png" />
+    <Resource Include="Image\calculator-icon_34473 (1).ico" />
+    <Resource Include="Image\OIP - Copy.jpg" />
+  </ItemGroup>
+
+</Project>

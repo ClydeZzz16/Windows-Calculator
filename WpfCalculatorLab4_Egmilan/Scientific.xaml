@@ -1,0 +1,177 @@
+﻿<Page x:Class="WpfCalculatorLab4_Egmilan.Scientific"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfCalculatorLab4_Egmilan"
+      mc:Ignorable="d" 
+        d:DesignHeight="400" d:DesignWidth="500" Background="#f9f1ef"
+  Title="Scientific">
+    <Page.Resources>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="12" BorderBrush="#E3E3E3" BorderThickness="1" Background="White">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#D9D9D9"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#AFAFAF"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="EqualButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="12" BorderBrush="#E3E3E3" BorderThickness="1" Background="#0078D7">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#005A9E"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#AFAFAF"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="ScientificGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="10" HorizontalAlignment="Stretch" Margin="10,0">
+            <ComboBox x:Name="TrigComboBox" Margin="5" HorizontalAlignment="Stretch" SelectionChanged="TrigComboBox_SelectionChanged">
+                <ComboBoxItem Content="Trigonometry" IsSelected="True" />
+                <ComboBoxItem Content="sin"/>
+                <ComboBoxItem Content="cos"/>
+                <ComboBoxItem Content="tan"/>
+                <ComboBoxItem Content="asin"/>
+                <ComboBoxItem Content="acos"/>
+                <ComboBoxItem Content="atan"/>
+                <ComboBoxItem Content="csc"/>
+                <ComboBoxItem Content="sec"/>
+                <ComboBoxItem Content="cot"/>
+            </ComboBox>
+            <ComboBox x:Name="FunctionsComboBox" Margin="5" HorizontalAlignment="Stretch" SelectionChanged="FunctionsComboBox_SelectionChanged">
+                <ComboBoxItem Content="Functions" IsSelected="True"/>
+                <ComboBoxItem Content="|x|"/>
+                <ComboBoxItem Content="⌊x⌋"/>
+                <ComboBoxItem Content="⌈x⌉"/>
+                <ComboBoxItem Content="rand"/>
+                <ComboBoxItem Content="→dms"/>
+                <ComboBoxItem Content="→deg"/>
+                
+            </ComboBox>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Name="Second" Grid.Column="0" Content="2ⁿᵈ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="SecondButton_Click"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="π" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="PiButton_Click"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="e" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="EButton_Click"/>
+            <Button Grid.Row="0" Grid.Column="3" Content="C" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="ClearButton_Click"/>
+            <Button Grid.Row="0" Grid.Column="4" Content="⌫" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="BackspaceButton_Click"/>
+               
+            <!--New Buttons-->
+            <Button Grid.Row="0" Name="Second2" Grid.Column="0" Content="2ⁿᵈ" FontSize="24" Background="#005A9E" Margin="5" Style="{StaticResource EqualButtonStyle}" FontWeight="Normal" Click="SecondButton_Click" Visibility="Collapsed"/>
+            <Button Grid.Row="1" Grid.Column="0" Content="x³" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="CubePowerButton_Click"/>
+            <Button Grid.Row="2" Grid.Column="0" Content="∛x" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="CubeRootButton_Click"/>
+            <Button Grid.Row="3" Grid.Column="0" Content="ʸ√x" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="YRootXButton_Click"/>
+            <Button Grid.Row="4" Grid.Column="0" Content="2ˣ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="TwoPowerXButton_Click"/>
+            <Button Grid.Row="5" Grid.Column="0" Content="log_y x"  FontSize="18" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="LogYButton_Click"/>
+            <Button Grid.Row="6" Grid.Column="0" Content="eˣ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="EPowerXButton_Click"/>
+
+
+            <Button Grid.Row="1" Name="Square" Grid.Column="0" Content="x²" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="SquarePowerButton_Click"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="¹/ₓ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="ReciprocalButton_Click"/>
+            <Button Grid.Row="1" Grid.Column="2" Content="|x|" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="AbsoluteValueButton_Click"/>
+            <Button Grid.Row="1" Grid.Column="3" Content="exp" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="ExpButton_Click"/>
+            <Button Grid.Row="1" Grid.Column="4" Content="mod" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="ModuloButton_Click"/>
+
+            <Button Grid.Row="2" Name="SquareRoot" Grid.Column="0" Content="²√x" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="SquareRootButton_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="(" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="OpenParenthesis_Click"/>
+            <Button Grid.Row="2" Grid.Column="2" Content=")" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="CloseParenthesis_Click"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="n!" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="FactorialButton_Click"/>
+            <Button Grid.Row="2" Grid.Column="4" Content="÷" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Operator_Click"/>
+
+            <Button Grid.Row="3" Name="Power" Grid.Column="0" Content="xʸ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Operator_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="7" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="8" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="3" Content="9" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="4" Content="×" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Operator_Click"/>
+
+            <Button Grid.Row="4" Name="PowerTen" Grid.Column="0" Content="10ˣ" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="PowerOfTen_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="4" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="5" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="3" Content="6" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="4" Content="-" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Operator_Click"/>
+
+            <Button Grid.Row="5" Name="Log" Grid.Column="0" Content="log" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="LogButton_Click"/>
+            <Button Grid.Row="5" Grid.Column="1" Content="1" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" Content="2" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click" />
+            <Button Grid.Row="5" Grid.Column="3" Content="3" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="5" Grid.Column="4" Content="+" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Operator_Click"/>
+
+            <Button Grid.Row="6" Name="Natural" Grid.Column="0" Content="ln" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="NaturalLogButton_Click"/>
+            <Button Grid.Row="6" Grid.Column="1" Content="+/-" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="ToggleSignButton_Click"/>
+            <Button Grid.Row="6" Grid.Column="2" Content="0" FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="Number_Click"/>
+            <Button Grid.Row="6" Grid.Column="3" Content="." FontSize="24" Background="White" Margin="5" Style="{StaticResource RoundCorner}" FontWeight="Normal" Click="DecimalButton_Click"/>
+            <Button Grid.Row="6" Grid.Column="4" Content="=" Background="#FF0067C0" Foreground="White" FontSize="24" Margin="5" Style="{StaticResource EqualButtonStyle}" FontWeight="Normal" Click="EqualsButton_Click"/>
+        </Grid>
+    </Grid>
+
+</Page>
